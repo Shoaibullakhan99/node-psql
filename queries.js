@@ -1,13 +1,15 @@
 //Creating a pool of connection to database so that the 
 //client does not make subsequent requests to server every time it tries to communicate.
+const {loadEnvFile} = require('node:process')
+process.loadEnvFile('./config/.env');
 
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: 'TEST_ROLE',
-    host: 'localhost',
-    database: 'api',
-    password: 'ssauto',
-    port: 5432,
+    user: process.env.USER,
+    host: process.env.HOST,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: process.env.DBPORT || 5432,
 })
 
 
