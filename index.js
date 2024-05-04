@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
+process.loadEnvFile('./config/.env') //Latest node version allows to load .env file without installing dotenv package
+
 const app = express();
 const db = require('./queries');
-const port = 3000;
+const port = process.env.PORT ||  3000;
 
 app.use(bodyParser.json());
 app.use(
